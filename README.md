@@ -4,6 +4,7 @@ Criar uma aplicação web para visualizar os pedidos realizados durante um festi
 
 * Aplicantes para a vaga de full-stack deverão modelar o banco de dados e desenvolver a API.
 * Caso você aplique para a vaga de front-end, utilize os arquivos .json no repositório
+* **É necessário adicionar seu CV atualizado e com dados para contato**
 
 
 Crie um fork do repositório e, ao concluir o desafio, faça um pull-request.
