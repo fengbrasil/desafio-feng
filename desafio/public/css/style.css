@@ -1,0 +1,54 @@
+*{
+    margin:0;
+    padding:0;
+}
+table{
+    margin:auto;
+    border-collapse: collapse;
+    text-align:center;
+}
+table th, table td{
+    border:1px solid gray;
+}
+.bem-vindo-usuario{
+    box-shadow:2px 2px 8px gray;
+    padding:8px;
+    margin-bottom:10px;
+}
+.titulo-pedido{
+    text-align:center;
+}
+.botao-add-pedido{
+    margin:10px;
+}
+form{
+    text-align:center;
+}
+form select{
+    width:25%;
+}
+.filtro{
+    display:block;
+    margin:10px;
+}
+.filtro label{
+    display:block;
+}
+.tabela-pedidos{
+    text-align:center;
+}
+.bem-vindo-usuario{
+    background-color:lightgray;
+}
+.dados-cliente{
+    display:flex;
+    justify-content: space-around;
+}
+
+@media (min-width:580px){
+    .filtro{
+        display:flex;
+        justify-content: space-around;
+        margin:10px;
+    }
+}
