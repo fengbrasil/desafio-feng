@@ -1,0 +1,6 @@
+Devido à um conhecimento mais raso em Front-End, acabei focando demais no back-end, criando api de edição e inserção de produtos e pedidos e gastando muito tempo em seus desenvolvimentos. O que acabou atrapalhando e não permitindo a conclusão do Front-End no tempo estipulado de 24 horas (desde o fork, 28horas e 32 minutos).
+Me confundi um pouco com o enunciado, fazendo pensar que deveria ter telas de cadastro de produtos ou de compra.
+Creio que, se tivesse mais tempo, conseguiria completar o desafio com os requisitos de Front que faltaram e a autenticação via JWT.
+De qualquer forma, vou completar o desafio mesmo que por Hobby e farei um novo pull-request.
+
+Atenciosamente, Luís Paulo Braga. 
