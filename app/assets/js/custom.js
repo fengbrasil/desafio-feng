@@ -12,6 +12,10 @@ var maskBehavior = function (val) {
 $('.phone').mask(maskBehavior, options);
 
 $(function() {
+    $('.money').maskMoney();
+})
+
+$(function() {
     $(".globalDtTable").DataTable({
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -48,9 +52,16 @@ $(function() {
 });
 
 function deleteClient(idclient)
- {
+{
     var r = confirm("Tem certeza que deseja Excluir esse cliente?");
     if (r == true) {
         location.href = '/clientes/apagar/'+idclient
     }
- }
+}
+function deleteProduct(idproduct)
+{
+    var r = confirm("Tem certeza que deseja Excluir esse produto?");
+    if (r == true) {
+        location.href = '/produtos/apagar/'+idproduct
+    }
+}

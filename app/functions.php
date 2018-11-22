@@ -19,4 +19,17 @@ function formatTimeStamp($date) {
 
 }
 
+function formatPriceToDB($price)
+{
+    $price = explode(' ',$price);
+    $price = str_replace(',','.',$price[1]);
+
+    return (float)$price;
+}
+
+function formatPrice($price)
+{
+    return number_format($price, 2, ',', '.');
+}
+
 ?>

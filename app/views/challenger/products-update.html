@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Clientes
+        Produtos
       </h1>
       <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li><a href="/clientes"><i class="fa fa-dashboard"></i>Clientes</a></li>
-        <li class="active">Editar</li>
+        <li><a href="/produtos"><i class="fa fa-dashboard"></i>Produtos</a></li>
+        <li class="active">Novo</li>
       </ol>
     </section>
 
@@ -18,7 +18,7 @@
       <!-- Default box -->
       <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Editar Cliente</h3>
+              <h3 class="box-title">Editar Produto</h3>
             </div>
 
             <div class="box-body">
@@ -28,16 +28,16 @@
               <form role="form" method="POST">
 
                 <div class="form-group">
-                  <label for="desclient">Nome*</label>
-                  <input value="{$client.desclient}" name="desclient" type="text" class="form-control" required>
+                  <label for="product">Item*</label>
+                  <input value="{$product.product}" name="product" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="climail">E-mail*</label>
-                    <input value="{$client.climail}" name="climail" type="email" class="form-control" required>
+                    <label for="desproduct">Descrição*</label>
+                    <input value="{$product.desproduct}" name="desproduct" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="cliphone">Telefone(somente números)</label>
-                    <input value="{$client.cliphone}" name="cliphone" type="text" class="form-control phone">
+                    <label for="vlprice">Valor(somente números)*</label>
+                    <input value="R$ {function="formatPrice($product.vlprice)"}" type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," name="vlprice" class="form-control money" required>
                 </div>
                 <div class="form-group text-center">
                  <button class="btn btn-success" type="submit">Salvar Alterações</button>
