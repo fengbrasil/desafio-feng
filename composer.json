@@ -1,0 +1,20 @@
+{
+    "name": "Desafion Feng",
+    "authors": [{
+        "name": "Igor Bressan",
+        "email": "igorbressan@gmail.com"
+    }],
+    "require": {
+        "slim/slim": "2",
+        "rain/raintpl": "3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Challenger\\": "app\\"
+        },
+        "files": [
+            "app/functions.php"
+        ]
+    },
+    "minimum-stability": "stable"
+}
