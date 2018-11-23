@@ -19,10 +19,10 @@ Stack Utilizado
       * JQUERY (Apenas para algumas requisições em AJAX, Filtros de Formulário)
       * Vue.js (Duas Aplicações)
 
-   # Vue.js
+   *Vue.js*
       * Similaridade e Performance ao Angular;
-      * Agilidade/Velocidade na Implementação dos Filtros de Data, Nome e Valor Mínimo na Área de Pedidos (requests.app.js);
-      * Aplicação de geração de Pedidos dinâmica (resquests.modal.js);
+      * Agilidade/Velocidade na Implementação dos Filtros de Data, Nome e Valor Mínimo na Área de Pedidos (filter.app.js);
+      * Aplicação de geração de Pedidos dinâmica (requests.app.js);
 
    OBS.: Era possível ter feito o projeto inteiro em Angular e IONIC, mas optei em demonstrar conhecimentos em BackEnd (MVC, PHP7, Autenticação, CRUD);
    * Não implementado (Pois terei um compromisso hoje e só poderei retomar na Segunda):
