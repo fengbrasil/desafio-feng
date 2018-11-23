@@ -43,6 +43,7 @@ class User extends Model {
 
     public static function login($login, $password)
     {
+
         $sql = new Sql();
 
         $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.deslogin = :LOGIN

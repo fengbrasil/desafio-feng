@@ -55,6 +55,10 @@ class Request extends Model {
         $sql = new Sql;
         $results = $sql->select("SELECT * FROM `tb_requests` INNER JOIN `tb_clients` USING (idclient)");
 
+        foreach ($results as $key => $value) {
+            $results[$key]['vltotal'] = getRqtTotal($value['idrequest']);
+        }
+
         return $results;
 
     }

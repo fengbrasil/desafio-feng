@@ -91,10 +91,3 @@ $('.modalDefault').on('click', function(e) {
     
     $('#generalModal').modal('show');
 });
-
-
-
-//Date picker
-$('.datepicker').datepicker({
-    autoclose: true
-})

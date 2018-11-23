@@ -25,22 +25,22 @@
             <table class="globalDtTable table table-bordered table-responsive">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Item</th>
-                  <th>Descrição</th>
-                  <th>Valor</th>
-                  <th>Data de Registro</th>
-                  <th>Opções</th>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Item</th>
+                  <th class="text-center">Descrição</th>
+                  <th class="text-center">Valor</th>
+                  <th class="text-center">Data de Registro</th>
+                  <th class="text-center">Opções</th>
                 </tr>
                 </thead>
                 <tbody>
                   {loop="$products"}
                 <tr>
-                  <td>{$value.idproduct}</td>
-                  <td>{$value.product}</td>
-                  <td>{$value.desproduct}</td>
-                  <td>R$ {function="formatPrice($value.vlprice)"}</td>
-                  <td>{function="formatTimeStamp($value.dt_register)"}</td>
+                  <td class="text-center">{$value.idproduct}</td>
+                  <td class="text-center">{$value.product}</td>
+                  <td class="text-center">{$value.desproduct}</td>
+                  <td class="text-center">R$ {function="formatPrice($value.vlprice)"}</td>
+                  <td class="text-center">{function="formatTimeStamp($value.dt_register)"}</td>
                   <td class="text-center"><div class="btn-group">
                       <a href="/produtos/{$value.idproduct}" class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Alterar"><i class="fa fa-pencil"></i></a>
                       <a href="javascript:void(0);" onclick="deleteProduct('{$value.idproduct}')" class="btn btn-xs btn-danger" type="button" data-toggle="tooltip" title="" data-original-title="Excluir"><i class="fa fa-times"></i></a>

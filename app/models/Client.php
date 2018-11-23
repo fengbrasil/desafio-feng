@@ -57,7 +57,23 @@ class Client extends Model {
             ':idclient' => $idclient
         ]);
 
-        return $result[0];
+        $sql = new Sql;
+        $results = $sql->select("SELECT * FROM `tb_requests` WHERE `idclient` = :idclient", [
+            ':idclient' => $idclient
+        ]);
+
+        foreach ($results as $key => $value)
+        {
+            $sql = new Sql;
+            $result = $sql->query("DELETE FROM `tb_requestsproducts` WHERE `idrequest` = :idrequest", [
+                ':idrequest' => (int)$value['idrequest']
+            ]);
+        }
+
+        $sql = new Sql;
+        $result = $sql->query("DELETE FROM `tb_requests` WHERE `idclient` = :idclient", [
+            ':idclient' => $idclient
+        ]);
 
     }
 

@@ -1,29 +1,29 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">×</span></button>
-    <h4 class="modal-title">Por favor Selecione um Cliente para Continuar</h4>
+    <h4 class="modal-title text-center">Por favor Selecione um Cliente para Continuar</h4>
 </div>
 <div class="modal-body">
     <table class="table table-bordered table-responsive">
 
         <thead>
         <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Data de Registro</th>
-            <th>Opções</th>
+            <th class="text-center">#</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">E-mail</th>
+            <th class="text-center">Telefone</th>
+            <th class="text-center">Data de Registro</th>
+            <th class="text-center">Opções</th>
         </tr>
         </thead>
         <tbody>
         {loop="$clients"}
         <tr>
-            <td>{$value.idclient}</td>
-            <td>{$value.desclient}</td>
-            <td>{$value.climail}</td>
-            <td>{$value.cliphone}</td>
-            <td>{function="formatTimeStamp($value.dt_register)"}</td>
+            <td class="text-center">{$value.idclient}</td>
+            <td class="text-center">{$value.desclient}</td>
+            <td class="text-center">{$value.climail}</td>
+            <td class="text-center">{$value.cliphone}</td>
+            <td class="text-center">{function="formatTimeStamp($value.dt_register)"}</td>
             <td class="text-center">
                 <button class="btn btn-xs btn-default btn-new-request" data-toggle="tooltip" data-original-title="Novo Pedido" data-id="{$value.idclient}">Novo Pedido</button>
             </td>

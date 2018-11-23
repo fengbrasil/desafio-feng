@@ -1,19 +1,20 @@
 var filter = new Vue({
     el: '#appFilter',
     created(){
-
         this.getList();
-        console.log(this.list, this.requestDB)
     },
     data: {
         requestList: [],
-        requestDB: null
+        requestDB: null,
+        dateStart: null,
+        dateEnd: null,
+        clientName: '',
+        minValue: 0.00
     },
     methods:{
        
         getList()
         {
-            
             let list = [];
             this.$http.get('/requests/getAll')
                 .then(res => {
@@ -21,16 +22,95 @@ var filter = new Vue({
                         list.push({
                             idrequest: e.idrequest,
                             dt_request: e.dt_request,
-                            desclient: e.desclient
+                            desclient: e.desclient,
+                            vltotal: e.vltotal,
+                            vlfilter: parseFloat(e.vltotal.replace('.','').replace(',','.'))
                         });
                     });
-                console.log(list);
-                    
                 this.requestList = list;
                 this.requestDB = list.slice(0);
             }, res => {
             });
+        },
+        showModal(id)
+        {
+            $('.modalResult').remove();
+
+            let link = 'request/';
+
+            $.ajax({
+                url: '/' + link + id,
+                cache: false,
+                success: function(data){
+                    $('.modal-content').append('<div class="modalResult">' + data + '</div>');
+                }
+            });
             
+            $('#generalModal').modal('show');
+        },
+        filterDate()
+        {
+            if (this.dateStart != null && this.dateEnd != null)
+            {
+                let startDate = new Date(this.dateStart);
+                let endDate = new Date(this.dateEnd);
+
+                if (startDate < endDate)
+                {
+                    this.requestList = this.requestDB.filter(a=>{
+                        a.dt_request = a.dt_request.split(' ');
+                        a.dt_request = a.dt_request[0];
+                        let date = new Date(a.dt_request);
+                        return (date >= startDate && date <= endDate);
+                    });
+                } else {
+                    alert('A Data de Término deve ser menor que a Data de Início')
+                }
+            } else {
+                return false;
+            }
+        },
+        filterName()
+        {
+            let val = this.clientName;
+
+            if (val && val.trim() != '') {
+                
+                let filter = this.requestList.filter(a=>{
+                    return (a.desclient.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                });
+
+                if (filter.length > 0)
+                {
+                    this.requestList = filter;
+                } else {
+                    alert('Nenhum Pedido Encontrado');
+                }
+            } else {
+                this.requestList = this.requestDB.slice(0);
+                this.filterDate();
+            }
+        },
+        filterMinValue()
+        {
+            let val = parseFloat(this.minValue);
+
+            if (val > 0)
+            {
+                let filter = this.requestList.filter(a=>{
+                    return (a.vlfilter >= val && val <= a.vlfilter);
+                });
+                if (filter.length > 0)
+                {
+                    this.requestList = filter;
+                } else {
+                    alert('Nenhum Pedido Encontrado');
+                }
+            } else {
+                this.requestList = this.requestDB.slice(0);
+                this.filterDate();
+                this.filterName();
+            }
         }
        
     },
@@ -40,18 +120,23 @@ var filter = new Vue({
     },
     filters: 
     {
-        trataValor: function (valor){
-            return parseFloat(valor).toLocaleString('pt-BR',{
+        formatPrice: function (value){
+            return parseFloat(value).toLocaleString('pt-BR',{
                 minimumFractionDigits: 2,  
                 maximumFractionDigits: 2
             });
         },
-        trataData: function (valor) {
-            console.log(valor); return false;
-            if (valor) {
-                let date = new Date(valor[0]);
-                return date.toLocaleDateString('pt-BR');
+        formatDate: function (value) {
+            if (value) {
+                let date = value.split(' ');
+                date = new Date(date[0]);
+                return date.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
             } 
-        }
+        },
+        formatId: function (value) {
+            if (value) {
+                return `#${("000" + value).slice(-3)}`;
+            }
+        },
     }
     });

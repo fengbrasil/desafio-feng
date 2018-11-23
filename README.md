@@ -1,61 +1,36 @@
 # Desafio FENG
 
-Criar uma aplicação web para visualizar os pedidos realizados durante um festival. Para cada pedido, o sistema deverá exibir os itens selecionados e os dados do comprador.
+   # Banco de Dados e Currículo na Pasta desafio-feng
 
-* Aplicantes para a vaga de full-stack deverão modelar o banco de dados e desenvolver a API.
-* Caso você aplique para a vaga de front-end, utilize os arquivos .json no repositório
-* **É necessário adicionar seu CV atualizado e com dados para contato**
+Stack Utilizado
 
+   *Back-end*
+   * PHP
+      * Frameworks Slim
+      * RainTPL
+      * MVC (Não cheguei a criar controllers em virtude do Vue.js);
 
-Crie um fork do repositório e, ao concluir o desafio, faça um pull-request.
+   * Banco de dados:
+      * MySQL
+   
+   *Front-end*
+   * Material: Admin LTE
+   * Javascript
+      * JQUERY (Apenas para algumas requisições em AJAX, Filtros de Formulário)
+      * Vue.js (Duas Aplicações)
 
-*Mesmo que você não consiga concluir o desafio, não deixe de criar o pull-request.*
+   # Vue.js
+      * Similaridade e Performance ao Angular;
+      * Agilidade/Velocidade na Implementação dos Filtros de Data, Nome e Valor Mínimo na Área de Pedidos (requests.app.js);
+      * Aplicação de geração de Pedidos dinâmica (resquests.modal.js);
 
-## Requerimentos
+   OBS.: Era possível ter feito o projeto inteiro em Angular e IONIC, mas optei em demonstrar conhecimentos em BackEnd (MVC, PHP7, Autenticação, CRUD);
+   * Não implementado (Pois terei um compromisso hoje e só poderei retomar na Segunda):
+      * Alterar Senha, Recuperar Senha, Alterar Perfil (dados e foto);
+      * Remover Pedido, Editar Pedido;
 
-* É necessário descrever sua solução e o que te levou a tomar as decisões
-* O sistema deve ser responsivo
-* A página é composta pelos elementos abaixo:
-   * Seção de filtros (Datas de início e fim, valor e nome do cliente).
-   * Lista dos pedidos filtrados
-   * Modal exibindo as informações do pedido e dados do cliente
-![UI](https://feng.devteam.rocks/wireframe-dev.png)
-* As informações de clientes são:
-   * id
-   * nome
-   * e-mail
-   * telefone
-* As informações dos itens são:
-   * id
-   * nome
-   * descrição
-   * valor unitário
-* As informações dos pedidos são:
-   * id
-   * data
-   * itens
-   * cliente
-
-## Dicas
-
-* Controle de acesso (login) não é obrigatório mas desejável
-* É permito o uso dos frameworks visuais Bootstrap e Material. Uma interface customizada será bem vista.
-
-## Stack desejável
-
-*Back-end*
-* PHP
-  * Frameworks Slim ou Laravel
-* NodeJS
-  * Framework Express.js
-* Banco de dados:
-   * MySQL
-   * PostgreSQL
-   * Redis
-
-*Front-end*
-* HTML5
-* CSS / SASS
-* Javascript
-  * Angular 6 / Ionic 3
-
+   * DEIXEI UM BANCO DE DADOS RODANDO NO SERVIDOR E OS DADOS SALVOS NO PROJETO (NÃO É SEGURO FAZER ISSO MAS QUIS AGILIZAR OS TESTES).
+      * Para Testar:
+         * composer install
+         * Na Raiz do Projeto: php -S localhost:8888 (Ou porta de preferência, PHP 7.0 ou Superior);
+         * Usuário: admin / senha: 12348765
