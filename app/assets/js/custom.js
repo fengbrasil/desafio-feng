@@ -65,3 +65,36 @@ function deleteProduct(idproduct)
         location.href = '/produtos/apagar/'+idproduct
     }
 }
+
+
+
+$('.modalDefault').on('click', function(e) {
+
+    e.preventDefault();
+
+    $('.modalResult').remove();
+
+    var dataId = '';
+    var id = $(this).attr('data-id');
+
+    if (id) dataId = '/' + id;
+
+    var dataLink = $(this).attr('data-link');
+
+    $.ajax({
+        url: '/' + dataLink + dataId,
+        cache: false,
+        success: function(data){
+            $('.modal-content').append('<div class="modalResult">' + data + '</div>');
+        }
+    });
+    
+    $('#generalModal').modal('show');
+});
+
+
+
+//Date picker
+$('.datepicker').datepicker({
+    autoclose: true
+})

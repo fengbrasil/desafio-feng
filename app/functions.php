@@ -1,6 +1,7 @@
 <?php
 
 use \Challenger\models\User;
+use \Challenger\models\Request;
 
 function getUserData() {
 
@@ -30,6 +31,26 @@ function formatPriceToDB($price)
 function formatPrice($price)
 {
     return number_format($price, 2, ',', '.');
+}
+
+function getRqtTotal($idrequest)
+{
+    $request = Request::get((int)$idrequest);
+
+    $subtotal = [];
+
+    foreach ($request as $key => $value) {
+        array_push($subtotal,($value['vlprice'] * $value['nrqtd']));
+    }
+
+    $total = array_sum($subtotal);
+
+    return formatPrice($total);
+}
+
+function formatRequestId($id)
+{
+    return '#'.str_pad($id, 3, '0', STR_PAD_LEFT);
 }
 
 ?>

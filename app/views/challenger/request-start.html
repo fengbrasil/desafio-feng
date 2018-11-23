@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title">Por favor Selecione um Cliente para Continuar</h4>
+</div>
+<div class="modal-body">
+    <table class="table table-bordered table-responsive">
+
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Data de Registro</th>
+            <th>Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop="$clients"}
+        <tr>
+            <td>{$value.idclient}</td>
+            <td>{$value.desclient}</td>
+            <td>{$value.climail}</td>
+            <td>{$value.cliphone}</td>
+            <td>{function="formatTimeStamp($value.dt_register)"}</td>
+            <td class="text-center">
+                <button class="btn btn-xs btn-default btn-new-request" data-toggle="tooltip" data-original-title="Novo Pedido" data-id="{$value.idclient}">Novo Pedido</button>
+            </td>
+        </tr>
+        {/loop}
+        
+        </tbody>
+    
+    </table>
+</div> 
+<script src="../app/assets/js/requests.modal.js"></script>
+
