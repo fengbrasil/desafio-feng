@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><?php isset($title) && print($title); ?></title>
+	<meta name="description" content="desafio-feng">
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Custom styles for this template -->
+	<link href="<?= $this->assets('css', 'admin.css') ?>" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<header class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right clearfix">
+				<?php
+					$_current_url = $_SERVER['REQUEST_URI'];
+					foreach ([
+						'administration'         => 'Painel',
+						'administration/orders'  => 'Pedidos',
+						'administration/clients' => 'Clientes',
+						'logout'  => 'Logout',
+					] as $_link => $_title):
+				?>
+					<li  class="nav-item" >
+						<a class="nav-link <?= ($_current_url=='/'.$_link? 'active':'') ?>" href="<?= $this->url($_link) ?>">
+							<?= $_title ?>
+						</a>
+					</li>
+				<?php
+					endforeach;
+				?>
+				</ul>
+			</nav>
+			<h1> Desafio-feng </h1>
+			<a href="<?= $this->url() ?>" class="btn btn-xs btn-info">Retornar ao site</a> 
+		</header>
+
+		<?php require "_flash_messages.phtml"; ?>
+
+		<main id="app">
+			<?= $this->content() ?>
+		</main>
+
+		<footer class="footer">
+			<hr> <hr> <hr> 
+			<p>&copy; 2018.</p>
+			<br>
+		</footer>
+	</div>
+
+	<script data-main="<?= $this->assets('js', 'admin/main.js') ?>"
+	  src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
+
+	<script >
+	<!--
+	// Require.Js paths config
+	requirejs.config({
+		paths: {
+			//Vue.js, development version
+			'vue': "//cdn.jsdelivr.net/npm/vue@2.5.20/dist/vue",
+			'filters': "<?= $this->assets('js', 'filters.js') ?>",
+			'order-form': "<?= $this->assets('js', 'admin/order-form.component.js') ?>",
+		}
+	});
+	-->
+	</script>
+	<!-- <script type="text/javascript" src="<?= $this->assets('js', 'admin/main.js') ?>" ></script> -->
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+<?php foreach($flash_messages as $messages_key => $messages): ?>
+	<?php foreach($messages as $message): ?>
+		<div class="<?php
+						if($messages_key == 'error') echo "alert alert-danger";
+						if($messages_key == 'success') echo "alert alert-success";
+					?>" role="alert">
+			<?php if(is_array($message)): ?>
+				<strong><?= key($message) ?>:</strong>&nbsp; <?= join(', ', $message) ?>
+			<?php else: ?>
+				<?= strval($message) ?>
+			<?php endif; ?>
+		</div>
+	<?php endforeach; ?>
+<?php endforeach; ?>
+

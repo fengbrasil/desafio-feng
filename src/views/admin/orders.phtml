@@ -1,0 +1,65 @@
+<?php
+	$this->set('title', 'Pedidos');
+	$this->wrapper('_wrapper');
+?>
+<p style="text-align: center">
+	<button v-on:click="order_form=true" class="btn btn-success"> Novo pedido </button>
+</p>
+<div v-if="order_form" class="jumbotron" style="padding: 30px 50px">
+	<button v-on:click="order_form=false" style="float:right;margin: -12px -3px 5px 0;">Cancelar</button>
+	<order-form action="/home/eduardo/"></order-form>
+</div>
+
+<br>
+<table class="table table-bordered">
+	<tr>
+		<th>Identificação</th>
+		<th>Data do pedido</th>
+		<th>Valor</th>
+		<th>Cliente</th>
+		<th>&nbsp;</th>
+	</tr>
+	<template v-for="order in orders">
+		<tr>
+			<td>{{order.id | idNormalize}}</td>
+			<td>{{order.date | dateNormalize}}</td>
+			<td>{{order.value | priceNormalize}}</td>
+			<td>{{order.Client.name}}</td>
+			<td>
+				<button v-on:click="displayItems(order)">Ver</button>
+			</td>
+		</tr>
+		<tr v-if="order.displayItems==true">
+			<td colspan="5" class="jumbotron">
+				<table v-if="!order.displayForm" v-on:click="order.displayForm=true" class="table table-bordered">
+					<tr>
+						<td colspan="4">
+							<button style="float: right">Editar</button>
+							<strong>Detalhes do pedido {{order.id | idNormalize}}</strong><br>
+							<b>Nome:</b> {{order.Client.name}}&nbsp;&nbsp;
+							<b>Telefone:</b> {{order.Client.phone}}&nbsp;&nbsp;
+							<b>E-mail:</b> {{order.Client.email}}
+						</td>
+					</tr>
+					<tr>
+						<th>Items</th>
+						<th>Descrição</th>
+						<th>Quantidade</th>
+						<th>Valor</th>
+					</tr>
+					<tr v-for="item in order.Items">
+						<td>{{item.name}}</td>
+						<td>{{item.description}}</td>
+						<td>{{item.quantity}}</td>
+						<td>{{item.sum | priceNormalize}}</td>
+					</tr>
+				</table>
+				<button v-if="order.displayForm" v-on:click="order.displayForm=false" 
+				 style="float: right;margin: 1px 1px -33px;">X</button>
+				<order-form v-if="order.displayForm" action="/home/eduardo/" v-bind:edit="order.order"></order-form>
+				<hr>
+			</td>
+		</tr>
+	</template>
+</table>
+<br>

@@ -1,0 +1,32 @@
+{
+  "name": "desafio-feng",
+  "description": "Desafio para a vaga de desenvolvedor",
+  "version": "0.0.1",
+  "main": "web/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Eduardo Azevedo",
+    "email": "eduhazvdo@gmail.com"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "requirejs": "^2.3.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-less": "^3.1.0",
+    "gulp-typescript": "^3.0.2",
+    "gulp-watch": "^4.3.10",
+    "less": "^2.7.1",
+    "typescript": "^3.2",
+    "vue": "^2.5.20",
+    "@types/jquery": "^3.2.13"
+  }
+}

@@ -1,0 +1,50 @@
+/**
+ *  Admin area
+ */
+* {
+  outline: none;
+}
+body .container {
+  max-width: 720px;
+}
+body .container strong {
+  display: block;
+  margin: 0px;
+  padding: 9px 6px 9px;
+  font-size: 1.63rem;
+}
+body .container main {
+  min-height: 420px;
+}
+body .container table,
+body .container table td,
+body .container table th {
+  text-align: center;
+  border: 1px solid #AFAFAF !important;
+}
+body .container .order-form label,
+body .container .order-form strong {
+  display: inline-block;
+  width: auto;
+  margin: 2px 7px 3px;
+}
+body .container .order-form label input[type="text"],
+body .container .order-form strong input[type="text"] {
+  display: inline-block;
+  float: right;
+  margin: -3px 7px 2px;
+}
+body .container .order-form table {
+  background-color: white;
+}
+body .container .order-form table td {
+  padding: 7px;
+}
+body footer {
+  padding-top: 1.9rem;
+  margin-top: 1.9rem;
+  text-align: center;
+}
+body footer p {
+  color: #777;
+}

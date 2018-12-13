@@ -1,0 +1,33 @@
+{
+  "name": "desafio-feng",
+  "description": "Desafio para a vaga de desenvolvedor",
+  "type": "project",
+  "license": "UNLICENSED",
+  "authors": [
+    {
+      "name": "Eduardo Azevedo",
+      "email": "eduhazvdo@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "catfan/Medoo": "*",
+    "slim/slim": "^3.1",
+    "slim/flash": "^0.2.0",
+    "eduhazvdo/php-simple-view": "dev-dev"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "files": [],
+    "psr-4": {
+      "lib\\": "src/lib/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/EduhAzvdo/php-Simple-View.git"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+<?php
+	$this->set('title','Signin');
+	$this->wrapper('_wrapper');
+?>
+<style>
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+</style>
+<div class="container login_page">
+	<?php 
+		require "admin/_flash_messages.phtml";
+	?>
+
+	<form class="form-signin" method="post">
+		<h2 class="form-signin-heading">Faça login</h2>
+		<label for="username" class="sr-only">Usuário</label>
+		<input type="text" id="username" name="user[username]" class="form-control" placeholder="Usuário" required autofocus>
+		<label for="password" class="sr-only">Senha</label>
+		<input type="password" id="password" name="user[password]" class="form-control" placeholder="Senha" required>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+		<p style="padding: 19px; margin: 0px; text-align: right">
+			<a href="/"> Retornar </a>
+		</p>
+		<p style="padding: 0px;">
+			<small><b>Usuário</b>: admin</small><br>
+			<small><b>Senha</b>: admin</small>
+		</p>
+	</form>
+
+</div> <!-- /container -->
