@@ -1,23 +1,25 @@
 
 import Vue from 'vue';
 
+// get API request address for a order
+var orderRequest = (id:number) => new Request(`/administration/api/order/${id}`, {method: 'GET'});
+
+// simple method to get "v-model" and "name" attributes normalized
 var normVname = (model:string) => {
 	var name = model.split('.');
 	name[1] = (typeof name[1] == undefined)? '' : `[${name[1]}]`;
 	return ` v-model="${model}" name="${name[0] + name[1]}" `;
 };
 
-var orderRequest = (id:number) => new Request(`/administration/api/order/${id}`, {method: 'GET'});
-
 /**
+ * OrderForm Component
  */
-Vue.component('order-form', {
+Vue.component('OrderForm', {
 	props: ['action', 'edit'],
 	data () {
 		return {
 			order: {
-				id: 0,
-				date: '',
+				id: 0, date: '',
 			},
 			client:{
 				name: null, email: null, phone: null,
@@ -25,16 +27,22 @@ Vue.component('order-form', {
 			items: Array(),
 		}
 	},
+
+	//
 	created() {
-		if (this.edit)
+		if (this.edit) // edit
 			this.loadOrder(this.edit);
-		else
+		else // new
 			this.addItem();
 	},
+
 	methods: {
+		//
 		processSubmit: function (ev:any) {
 			ev.preventDefault();
 		},
+
+		// load an order from the API
 		loadOrder: function (id:number) {
 			fetch(orderRequest(id)).then((response) => response.json())
 			.then((data) =>{
@@ -48,6 +56,8 @@ Vue.component('order-form', {
 					this.addItem(item);
 			});
 		},
+
+		// add a new item to the current orer
 		addItem: function (item:object = {
 			id: Date.now(),
 			name: '',
@@ -57,9 +67,13 @@ Vue.component('order-form', {
 		}) {
 			this.items.push(item);
 		},
+
+		// remove a item from the current order
 		remItem: function (id:number) {
 			this.items = this.items.filter((it) => it.id != id);
 		},
+
+		// to normalize a number float field
 		normFloat: function (ev:any) {
 			ev.target.value = ev.target.value.replace(',', '.').replace(/(?!^[\-\d\.])[^\d\.]/g, '');
 		},
@@ -71,7 +85,7 @@ Vue.component('order-form', {
 					<td>
 	`
 
-	// campos de dados do cliente
+	// client's data fields
 	+ (`
 		<strong> Dados do cliente </strong>
 		<label>
@@ -91,7 +105,7 @@ Vue.component('order-form', {
 		<label>
 			<b>Data:</b> <input ${normVname('order.date')} type="text" placeholder="01/12/2019" style="width: 12rem">
 		</label>
-	`) // Fim dos campos de dados do cliente
+	`) // end of client's data fields
 
 	+ `
 						</td>
@@ -105,7 +119,7 @@ Vue.component('order-form', {
 									<td>
 	`
 
-	// Campos de item
+	// Items' data fields
 	+ (`
 	<table style="width: 100%">
 		<tr>
@@ -131,14 +145,14 @@ Vue.component('order-form', {
 			</td>
 		</tr>
 	</table>
-	`) // Fim dos campos de item
+	`) // end of Items' data fields
 
 	+ `
 								</td>
 							</tr>
 							<tr>
 								<td style="text-align: center">
-									<button v-on:click="addItem()">Adicionar item</button>
+									<button v-on:click="addItem()" class="btn btn-primary">Adicionar item</button>
 								</td>
 							</tr>
 						</table>

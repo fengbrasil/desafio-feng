@@ -20,7 +20,7 @@
  O banco de dados é gerado durante a primeira execução pelo script em `/web/setup.php`, sendo armazenado na pasta `/var/`.
 
 #### Execução recomendada
-No terminal, no diretório da aplicação, executar o comando `php -S localhost:8080 -t web/`<br>
+No terminal, no diretório da aplicação, executar o comando: `php -S localhost:8080 -t web/`<br>
 
 ## Requerimentos
 * PHP 7.2 ou superior 

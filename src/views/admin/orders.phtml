@@ -31,10 +31,11 @@
 		</tr>
 		<tr v-if="order.displayItems==true">
 			<td colspan="5" class="jumbotron">
-				<table v-if="!order.displayForm" v-on:click="order.displayForm=true" class="table table-bordered">
+				<button v-if="!order.displayForm" v-on:click="order.displayForm=true"
+				 style="float: right;margin: 4px 3px -32px;" class="btn btn-xs btn-primary">Editar</button>
+				<table v-if="!order.displayForm" class="table table-bordered">
 					<tr>
 						<td colspan="4">
-							<button style="float: right">Editar</button>
 							<strong>Detalhes do pedido {{order.id | idNormalize}}</strong><br>
 							<b>Nome:</b> {{order.Client.name}}&nbsp;&nbsp;
 							<b>Telefone:</b> {{order.Client.phone}}&nbsp;&nbsp;
@@ -55,7 +56,7 @@
 					</tr>
 				</table>
 				<button v-if="order.displayForm" v-on:click="order.displayForm=false" 
-				 style="float: right;margin: 1px 1px -33px;">X</button>
+				 style="float: right;margin: 4px 3px -32px;" class="btn btn-xs btn-danger">X</button>
 				<order-form v-if="order.displayForm" action="/home/eduardo/" v-bind:edit="order.order"></order-form>
 				<hr>
 			</td>
