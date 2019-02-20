@@ -1,0 +1,32 @@
+version: "3"
+services:
+  server_app:
+    image: guizo/docker-laravel
+    ports:
+      - 8103:80
+    volumes:
+      - ./server:/var/www/html
+    working_dir: /var/www/html
+  server_db:
+    image: mysql:5.7
+    ports:
+      - 3103:3306
+    volumes:
+      - server_db_data:/var/lib/mysql
+    environment:
+      - TZ=America/Sao_Paulo
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=server_db
+  client_vue_app:
+    image: node:8
+    volumes:
+      - ./client-vue:/home/app
+    working_dir: /home/app
+    ports:
+      - 8003:8080
+      - 5003:5000
+    tty: true
+    command: npm run serve
+volumes:
+  server_db_data:
+    driver: local
