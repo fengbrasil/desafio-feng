@@ -2,26 +2,24 @@
   <div class="container p-5">
     <div class="row">
       <div class="input-field col s12 l3">
-        <input v-model="date_start" @keyup.enter="submit" id="date_start" type="text" name="date_start">
-        <label for="date_start">Data de Início</label>
+        <datepicker v-model="date_start" @input="setDate" name="date_start" format="dd/MM/yyyy" placeholder="Data de Início"></datepicker>
       </div>
       <div class="input-field col s12 l3">
-        <input v-model="date_end" @keyup.enter="submit" id="date_end" type="text" name="date_end">
-        <label for="date_end">Data de Término</label>
+        <datepicker v-model="date_end" @input="setDate" name="date_end" format="dd/MM/yyyy" placeholder="Data de Término"></datepicker>
       </div>
       <div class="input-field col s12 l3">
         <input v-model="client_name" @keyup.enter="submit" id="client_name" type="text" name="client_name">
         <label for="client_name">Nome do Cliente</label>
       </div>
       <div class="input-field col s12 l3">
-        <input v-model="minimum_value" id="minimum_value" type="number" name="minimum_value">
+        <input v-model="minimum_value" @keyup.enter="submit" id="minimum_value" type="number" name="minimum_value">
         <label for="minimum_value">Valor Mínimo</label>
       </div>
     </div>
     <div v-if="error" class="row text-red">
       {{ error }}
     </div>
-    <table class="responsive-table striped centered">
+    <table class="striped centered">
       <thead>
         <tr>
           <th>Identificação</th>
@@ -65,10 +63,17 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
+import moment from 'moment'
+
 export default {
   name: 'OrdersTable',
+  components: {
+    Datepicker
+  },
   data() {
     return {
+      api_url: null,
       orders: [],
       date_start: '',
       date_end: '',
@@ -84,6 +89,8 @@ export default {
     }
   },
   created() {
+    this.api_url = process.env.VUE_APP_API_BASE_URL + '/api/orders'
+
     this.callApi({})
   },
   methods: {
@@ -91,11 +98,10 @@ export default {
       axios({
         method:'get',
         params: params,
-        // TODO: Mover para constante
-        url:'http://172.17.0.1:8103/api/orders',
+        url: this.api_url,
       })
       .then((res) => {
-        // console.log(res)
+        // // console.log(res)
         this.orders = []
         
         this.page = res.data.meta.current_page
@@ -121,7 +127,20 @@ export default {
       })
     },
     submit() {
-      if(this.date_start != '' && this.date_end != '' && this.date_start > this.date_end) {
+      let params = {
+        date_start: this.date_start,
+        date_end: this.date_end,
+        client_name: this.client_name,
+        minimum_value: this.minimum_value,
+      }
+
+      this.callApi(params)
+    },
+    setDate() {
+      let date_start = this.date_start ? moment(this.date_start).format('DD/MM/YYYY') : ''
+      let date_end = this.date_end ? moment(this.date_end).format('DD/MM/YYYY') : ''
+
+      if(date_start != '' && date_end != '' && date_start > date_end) {
         this.error = 'Intervalo de datas inválido'
 
         return false
@@ -130,8 +149,8 @@ export default {
       }
 
       let params = {
-        date_start: this.date_start,
-        date_end: this.date_end,
+        date_start: date_start,
+        date_end: date_end,
         client_name: this.client_name,
         minimum_value: this.minimum_value,
       }

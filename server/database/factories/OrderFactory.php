@@ -6,7 +6,7 @@ $factory->define(App\Order::class, function (Faker $faker) {
     $users = App\User::pluck('id')->toArray();
     $items = App\Item::pluck('id')->toArray();
 
-    $selectedItems = $faker->randomElements($items, $faker->numberBetween(0, 10));
+    $selectedItems = $faker->randomElements($items, $faker->numberBetween(1, 10));
 
     return [
         'user_id' => $faker->randomElement($users),

@@ -33,7 +33,13 @@ class ApiController extends Controller
         }
 
         if(isset($filters['minimum_value'])) {
-            // TODO:
+            $ordersCopy = clone $orders;
+
+            $ordersCopy = $ordersCopy->get()->filter(function($item, $key) use($filters) {
+                return $item->getTotal() <= (float) $filters['minimum_value'];
+            })->pluck('id')->toArray();
+            
+            $orders->whereNotIn('id', $ordersCopy);
         }
 
         // $orders = $orders->get();
