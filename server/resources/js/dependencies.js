@@ -1,0 +1,1 @@
+window.materialize = require('materialize-css');
