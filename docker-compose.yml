@@ -1,0 +1,38 @@
+version: "3"
+services:
+  server:
+    build: ./server
+    volumes:
+      - ./server:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - 8005:8080
+      - 9005:9229
+    tty: true
+    command: npm run watch
+  client:
+    build: ./client
+    image: node:8
+    volumes:
+      - ./client:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - 4005:4200
+    tty: true
+    # command: npm run start
+  db:
+    image: postgres:11.2
+    ports:
+      - 3005:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./database/dumps:/home/db_dumps
+    working_dir: /home/db_dumps
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=desafio_feng
+volumes:
+  dbdata:
+    driver: local
