@@ -1,32 +1,38 @@
 version: "3"
 services:
-  server_app:
-    image: guizo/docker-laravel
-    ports:
-      - 8103:80
+  server:
+    build: ./server
     volumes:
-      - ./server:/var/www/html
-    working_dir: /var/www/html
-  server_db:
-    image: mysql:5.7
+      - ./server:/usr/src/app
+    working_dir: /usr/src/app
     ports:
-      - 3103:3306
-    volumes:
-      - server_db_data:/var/lib/mysql
-    environment:
-      - TZ=America/Sao_Paulo
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=server_db
-  client_vue_app:
+      - 8005:8080
+      - 9005:9229
+    tty: true
+    command: npm run watch
+  client:
+    build: ./client
     image: node:8
     volumes:
-      - ./client-vue:/home/app
-    working_dir: /home/app
+      - ./client:/usr/src/app
+    working_dir: /usr/src/app
     ports:
-      - 8003:8080
-      - 5003:5000
+      - 4005:4200
     tty: true
-    command: npm run serve
+    # command: npm run start
+  db:
+    image: postgres:11.2
+    ports:
+      - 3005:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./database/dumps:/home/db_dumps
+    working_dir: /home/db_dumps
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=desafio_feng
 volumes:
-  server_db_data:
+  dbdata:
     driver: local
