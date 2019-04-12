@@ -1,13 +1,10 @@
-var Item = (function(){
+var Cliente = (function(){
     "use strict";
     
     var init = function(){
         _load.geral();
     },
     _clickButton = {
-        teste: function(){
-            $('#txtValor').number( true, 2 );
-        },
         salvar: function(){
             $("#btnSalvar").click(function(){
                 var controle = "ok",
@@ -28,12 +25,11 @@ var Item = (function(){
                     return false;
                 }
                 
-                json = _configuracoesGerais.efetuarPost("/item/salvaritem", $("form").serialize());
+                json = _configuracoesGerais.efetuarPost("/cliente/salvarcliente", $("form").serialize());
                 json = $.parseJSON(json);
                 
                 if(json.retorno = "sucesso"){
-                    $("form input").val("");
-                    alert("Produto gravado");
+                    alert("Cliente gravado");
                 }
             });
         }
@@ -62,7 +58,6 @@ var Item = (function(){
     _load = {
         geral: function(){
             _clickButton.salvar();
-            _clickButton.teste();
         }
     };
     return {

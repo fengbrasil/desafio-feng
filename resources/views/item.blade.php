@@ -35,7 +35,7 @@
             </button>
         </div>
     </div>
-        <script src="{{ asset("/js/item/item.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("/js/item.js") }}" type="text/javascript"></script>
     <script>
         Item.init();
     </script>

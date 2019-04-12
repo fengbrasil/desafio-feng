@@ -17,4 +17,8 @@ class ItemController extends Controller {
 
         return json_encode(array("retorno" => "sucesso"));
     }
+    
+    public function listarTodosItem(){
+        return Item::all()->toJson();
+    }
 }

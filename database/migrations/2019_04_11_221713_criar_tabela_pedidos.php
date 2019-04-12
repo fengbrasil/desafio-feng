@@ -13,12 +13,11 @@ class CriarTabelaPedidos extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('pedido', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->float("valor")->nullable(true);
             $table->bigInteger('cliente_id')->unsigned();
-            $table->bigInteger('item_id')->unsigned();
             $table->foreign("cliente_id")->references("id")->on("clientes");
-            $table->foreign("item_id")->references("id")->on("item");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CriarTabelaPedidos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedido');
     }
 }

@@ -28,4 +28,7 @@ Route::get('/itens', function () {
 });
 
 Route::post("/cliente/salvarcliente", "ClienteController@salvarCliente");
+Route::get("/cliente/listartodosclientes", "ClienteController@listarTodosClientes");
+Route::get("/item/listartodositem", "ItemController@listarTodosItem");
 Route::post("/item/salvaritem", "ItemController@salvarItem");
+Route::post("/pedidos/salvarpedido", "PedidosController@salvarPedido");

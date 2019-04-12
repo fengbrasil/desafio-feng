@@ -1,10 +1,9 @@
 @extends("layouts.layout")
 @section("body")
-    <script src="{{ asset("../resources/js/produtos.js") }}" type="text/javascript"></script>
     <div class="card border">
         <div class="card-body">
             <h5 class="card-title">Lista de Pedidos</h5>
-            <table class="table table-hover table-ordered">
+            <table id="tabelaPedidos" class="table table-sm table-striped table-bordered table-hover nowrap w-100">
                 <thead>
                     <tr>
                         <th>Identificação</th>
@@ -33,42 +32,36 @@
                         <h5 class="modal-title">Novo Pedido</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="txtNomeProduto" class="control-label">Nome do Produto</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="txtNomeProduto" placeholder="Nome do Produto" />
+                            @csrf
+                            <div class="form-group">
+                                <label for="selCliente" class="control-label">Cliente</label>
+                                <div class="input-group">
+                                    <select name="selCliente" id="selCliente" class="form-control form-control-sm">
+                                        <option value="" selected>Selecione...</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtPrecoProduto" class="control-label">Preço</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="txtPrecoProduto" placeholder="Preço do Produto" />
+                            <div class="form-group">
+                                <label for="selItem" class="control-label">Item do Pedido</label>
+                                <div class="input-group">
+                                    <select name="selItem" id="selItem" class="form-control form-control-sm">
+                                        <option value="" selected>Selecione...</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtQuantidadeProduto" class="control-label">Quantidade</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="txtQuantidadeProduto" placeholder="Quantidade do Produto" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtDepartamentoProduto" class="control-label">Departamento</label>
-                            <div class="input-group">
-                                <select name="slcDepartamento" id="slcDepartamento" class="form-control">
-                                    <option value="" selected>Selecione...</option>
-                                </select>
-                            </div>
-                        </div>
+                            
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnSalvar" class="btn btn-sm btn-outline-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnAdicionarItem" class="btn btn-sm btn-outline-primary">Adicionar</button>
+                        <button type="cancel" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Fechar</button>
                     </div>
-                    <input type="hidden" name="hdnRotaCategorias" id="hdnRotaCategorias" value="{{ asset("/api/categorias") }}" />
-                    <input type="hidden" name="hdnRotaProduto" id="hdnRotaProduto" value="{{ asset("/api/produtos") }}" />
-                    <input type="hidden" name="hdnRotaProduto" id="hdnRotaAllProdutos" value="{{ asset("/produtos") }}" />
+                    <input type="hidden" name="hdnNumeroPedido" id="hdnNumeroPedido" value="" />
                 </form>
             </div>
         </div>
     </div>
+    <script src="{{ asset("/js/pedidos.js") }}" type="text/javascript"></script>
+    <script>
+        Pedido.init();
+    </script>
 @endsection

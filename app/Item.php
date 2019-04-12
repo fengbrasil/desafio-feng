@@ -8,6 +8,6 @@ class Item extends Model {
     protected $table = "item";
     
     public function pedidos(){
-        return $this->hasOne("App\Pedidos", "item_id", "id");
+        return $this->belongsToMany("App\Pedidos", "pedido_item");
     }
 }

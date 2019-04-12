@@ -1,4 +1,4 @@
-var Cliente = (function(){
+var Item = (function(){
     "use strict";
     
     var init = function(){
@@ -25,12 +25,11 @@ var Cliente = (function(){
                     return false;
                 }
                 
-                json = _configuracoesGerais.efetuarPost("/cliente/salvarcliente", $("form").serialize());
+                json = _configuracoesGerais.efetuarPost("/item/salvaritem", $("form").serialize());
                 json = $.parseJSON(json);
                 
                 if(json.retorno = "sucesso"){
-                    $("form input").val("");
-                    alert("Cliente gravado");
+                    alert("Produto gravado");
                 }
             });
         }

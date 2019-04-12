@@ -17,4 +17,8 @@ class ClienteController extends Controller {
         
         return json_encode(array("retorno" => "sucesso"));
     }
+    
+    public function listarTodosClientes(){
+        return Clientes::all()->toJson();
+    }
 }

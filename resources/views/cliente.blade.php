@@ -35,7 +35,8 @@
             </button>
         </div>
     </div>
-        <script src="{{ asset("/js/cliente/cliente.js") }}" type="text/javascript"></script>
+
+    <script src="{{ asset("/js/cliente.js") }}" type="text/javascript"></script>
     <script>
         Cliente.init();
     </script>

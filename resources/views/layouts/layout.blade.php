@@ -12,6 +12,7 @@
         <link href="{{ asset('css/estilo.css') }}" rel="stylesheet" type="text/css" />
         
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/util.js') }}" type="text/javascript"></script>
         
         <title>Desafio Feng</title>
     </head>
