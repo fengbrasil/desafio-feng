@@ -1,0 +1,110 @@
+.content {
+  padding: 1.0rem 1.4rem;
+}
+
+#ajaxLoading {
+	cursor: crosshair; 
+	color: #000000; 
+	z-index: 1000; 
+	text-align: center; 
+	width: 215px; 
+	height: 78px; 
+	position: fixed; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -39px; 
+	margin-left: -107px; 
+	background-color: #FFFFFF; 
+	border: 4px solid #cccccc; 
+	display: none; 
+	font-family: verdana; 
+	font-size: 11px
+}
+
+#ajaxLoadingFundo {
+	display: none; 
+	cursor: crosshair; 
+	background-color: #000000; 
+	display: none; 
+	width: 100%; 
+	height: 100%; 
+	z-index: 500; 
+	position: fixed; 
+	top: 0px; 
+	filter: alpha(opacity = 60); 
+	opacity: .20;
+}
+
+fieldset.scheduler-border {
+	margin-top: 10px;
+	margin-bottom: 20px;
+    border: 1px solid #ddd !important;
+    padding: 1em 1.4em 1.4em 1.4em !important;
+}
+
+legend.scheduler-border {
+    font-size: 1em !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 0.4em;
+}
+
+div.ui-datepicker {
+	font-size: 11px;
+}
+
+html,body{height: 100%; width: 100%}
+body{
+	margin:0;
+	padding:0;
+	font-family:Verdana;
+	min-height: 100%;    
+}
+
+#modalContainer {
+	position: absolute;
+	display: none;
+	width: auto;
+	height: auto;
+	top: 50%;
+	left: 50%;
+	margin-top: -250px;
+	margin-left: -499px;
+	width:977px;
+	height:500px;
+	border: 2px solid #cccccc;
+	background-color: #fff;
+	z-index: 1;
+	overflow:hidden;
+	overflow-y: scroll;
+	padding: 10px;
+	
+}
+
+/*Rules for sizing the icon*/
+.material-icons.md-17 { font-size: 17px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-64 { font-size: 64px; }
+.material-icons.md-72 { font-size: 72px; }
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.vertical-align-sub {
+    vertical-align: sub;
+}
+
+.dataTables_scroll {
+    overflow:auto;
+}
+
+.btn-xs {
+    padding: 0.05rem 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
