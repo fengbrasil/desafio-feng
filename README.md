@@ -1,61 +1,58 @@
-# Desafio FENG
+### Desafio FullStack Fang
 
-Criar uma aplicação web para visualizar os pedidos realizados durante um festival. Para cada pedido, o sistema deverá exibir os itens selecionados e os dados do comprador.
+![](https://i.ibb.co/DtgBmst/Screenshot-from-2019-04-24-16-49-17.png)
+![](https://i.ibb.co/tL6k1yB/Screenshot-from-2019-04-24-16-49-21.png)
+![](https://i.ibb.co/VDPq6bx/Screenshot-from-2019-04-24-16-49-57.png)
+![](https://i.ibb.co/G2sGQSF/Screenshot-from-2019-04-24-16-50-10.png)
 
-* Aplicantes para a vaga de full-stack deverão modelar o banco de dados e desenvolver a API.
-* Caso você aplique para a vaga de front-end, utilize os arquivos .json no repositório
-* **É necessário adicionar seu CV atualizado e com dados para contato**
+-----------------------------------------------------------------------
+### Front-End (React + Bootstrap)
+
+O front-End é composto por 3 paginas
+
+- Cadastro (Usuario, Email, Senha)
+- Login (Usuario, Senha, Token Authentication)
+
+- Tabela (Tabela_Modal)
+
+-----------------------------------------------------------------------
+Após o Login, é recebido um Token. Ele está sendo enviado para todas as requisicoes da API
+
+Ao carregar a pagina, é enviado um resquest post ao local /api/pedidos. O Token estando autenticado pelo servidor, é respondido o com o Json proposto do Desafio
+
+É feito uma funcão para organizar o json para ser inseridos na tabela.
+
+  
+----------------------------------------------------------------------- 
+### Back-End (Node.js + Express)
+
+És composto por 3 rotas
+
+/login
+/cadastro
+/api/pedidos
+
+- Login
+Verificacão de Usuario e Senha + Geracao do Token + Armazenamento do Token para os futuros resquests
+
+- Cadastro
+
+Verificacão de usuario existe + Armazenamento do novo usuario
+
+- Pedidos
+Verificacão do token + resposta com Json pro front-end
+
+----------------------------------------------------------------------- 
+
+Decidir fazer apenas fazendo 1 requisicão do Json ao Back-end pois se trata de uma local onde a carga do Json não és pesada
+Com isso, acaba aliviando um pouco o custo do servidor do que ficar fazendo resquests a cada momento a API
+
+Decidir utilizar um token junto ao request por motivos de seguranca
 
 
-Crie um fork do repositório e, ao concluir o desafio, faça um pull-request.
+----------------------------------------------------------------------- 
+npm install (dentro da pasta do servidor)
+npm install && npm run build (dentro da pasta front)
 
-*Mesmo que você não consiga concluir o desafio, não deixe de criar o pull-request.*
-
-## Requerimentos
-
-* É necessário descrever sua solução e o que te levou a tomar as decisões
-* O sistema deve ser responsivo
-* A página é composta pelos elementos abaixo:
-   * Seção de filtros (Datas de início e fim, valor e nome do cliente).
-   * Lista dos pedidos filtrados
-   * Modal exibindo as informações do pedido e dados do cliente
-![UI](https://feng.devteam.rocks/wireframe-dev.png)
-* As informações de clientes são:
-   * id
-   * nome
-   * e-mail
-   * telefone
-* As informações dos itens são:
-   * id
-   * nome
-   * descrição
-   * valor unitário
-* As informações dos pedidos são:
-   * id
-   * data
-   * itens
-   * cliente
-
-## Dicas
-
-* Controle de acesso (login) não é obrigatório mas desejável
-* É permito o uso dos frameworks visuais Bootstrap e Material. Uma interface customizada será bem vista.
-
-## Stack desejável
-
-*Back-end*
-* PHP
-  * Frameworks Slim ou Laravel
-* NodeJS
-  * Framework Express.js
-* Banco de dados:
-   * MySQL
-   * PostgreSQL
-   * Redis
-
-*Front-end*
-* HTML5
-* CSS / SASS
-* Javascript
-  * Angular 6 / Ionic 3
+node server.js (dentro da pasta do servidor)
 
