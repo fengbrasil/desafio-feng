@@ -48,3 +48,11 @@ Decidir fazer apenas fazendo 1 requisicão do Json ao Back-end pois se trata de 
 Com isso, acaba aliviando um pouco o custo do servidor do que ficar fazendo resquests a cada momento a API
 
 Decidir utilizar um token junto ao request por motivos de seguranca
+
+
+----------------------------------------------------------------------- 
+npm install (dentro da pasta do servidor)
+npm install && npm run build (dentro da pasta front)
+
+node server.js (dentro da pasta do servidor)
+

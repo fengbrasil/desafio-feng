@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const _login = require("./login.js");
 const _cadastro = require("./cadastro.js");
 const _query_sql = require("./query_sql.js");
+const path = require("path");
 
 /*const mysql      = require('mysql');
 const connection = mysql.createConnection({
@@ -54,6 +55,13 @@ function main() {
 })*/
 
   // Rotas
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/build")));
+    app.get("/*", function(req, res) {
+      res.sendFile(path.join(__dirname, "/build", "index.html"));
+    });
+  }
+
   app.post("/login", handlers.call_login);
   app.post("/cadastro", handlers.call_cadastro);
   app.post("/api/pedidos", handlers.call_pedidos);
