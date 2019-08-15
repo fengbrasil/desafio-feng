@@ -1,6 +1,5 @@
-<div class="container">
+<div class="container pt-5">
     <mat-card>
-
         <div class="col">
             <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
             </ngx-loading>
@@ -53,7 +52,52 @@
             </kendo-grid>
 
         </div>
-
     </mat-card>
-
 </div>
+
+<ng-template #modalDetalharPedido let-close="close">
+    <div class="modal-header">
+        <h6 class="modal-title">Detalhes do Pedido #{{ selectedRow?.id }}</h6>
+        <button type="button" class="close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Nome" [value]="selectedRow.client.name" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Telefone" [value]="selectedRow.client.phone" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="E-mail" [value]="selectedRow.client.email" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <app-datatable [data]="selectedRow.items" [dataRes]="gridDataRes.items" [gridSchema]="gridSchema"
+                        [showFilter]="false">
+                    </app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

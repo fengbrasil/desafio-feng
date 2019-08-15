@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PedidosService } from '../../app/shared/services/pedidos.service';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { PedidosService } from '@shared/services/pedidos.service';
 import {
   SelectableSettings,
   GridDataResult,
@@ -7,7 +7,10 @@ import {
   PageChangeEvent
 } from '@progress/kendo-angular-grid';
 import { process, State } from '@progress/kendo-data-query';
-import { IntlService, CldrIntlService } from '@progress/kendo-angular-intl';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoDTO } from '@shared/models/pedido.model';
+import { Subject } from 'rxjs';
+import { ColumnSettings } from '@shared/components/datatable/interfaces/columnSettings';
 
 @Component({
   selector: 'app-pedidos',
@@ -16,14 +19,43 @@ import { IntlService, CldrIntlService } from '@progress/kendo-angular-intl';
   providers: [PedidosService]
 })
 export class PedidosComponent implements OnInit {
+  @ViewChild('modalDetalharPedido', null) modalDetalharPedido: TemplateRef<any>;
+
   loading = false;
   selectableSettings: SelectableSettings;
 
-  gridDataRes;
+  gridDataRes: any;
   gridData: GridDataResult;
 
+  gridSchema: ColumnSettings[] = [
+    {
+      field: 'name',
+      title: 'Item',
+      width: '10%',
+      type: 'text'
+    },
+    {
+      field: 'description',
+      title: 'Descrição',
+      width: '10%',
+      type: 'text'
+    },
+    {
+      field: 'quantity',
+      title: 'Quantidade',
+      width: '10%',
+      type: 'text'
+    },
+    {
+      field: 'value',
+      title: 'Valor',
+      width: '10%',
+      type: 'numeric'
+    },
+  ];
+
   mySelection: number[] = [];
-  selectedRow;
+  selectedRow: PedidoDTO;
   state: State = {
     skip: 0,
     take: 10,
@@ -36,8 +68,10 @@ export class PedidosComponent implements OnInit {
       enabled: true
     };
   }
+
   constructor(
     private pedidosService: PedidosService,
+    private modal: NgbModal
   ) {
     this.setSelectableSettings();
   }
@@ -47,6 +81,7 @@ export class PedidosComponent implements OnInit {
   }
 
   getPedidos() {
+    this.loading = true;
     this.pedidosService.getAll().subscribe(
       res => {
         res.map(pedido => {
@@ -54,15 +89,20 @@ export class PedidosComponent implements OnInit {
         });
         this.gridData = res;
         this.gridDataRes = res;
+        this.loading = false;
       },
       err => {
-
+        console.error(err);
+        this.loading = false;
       }
     );
   }
 
-  cellClick($event) {
-    console.log($event.dataItem);
+  cellClick(row) {
+    console.log(row.dataItem);
+    this.selectedRow = row.dataItem;
+
+    this.modal.open(this.modalDetalharPedido, { size: 'lg', centered: true });
   }
 
   dataStateChange(state: DataStateChangeEvent): void {

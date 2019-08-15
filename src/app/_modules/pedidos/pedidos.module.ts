@@ -6,7 +6,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PedidosComponent } from './pedidos.component';
 
-import { MatCardModule } from '@angular/material/card';
+import {
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule
+} from '@angular/material';
 import { GridModule } from '@progress/kendo-angular-grid';
 
 
@@ -18,6 +22,7 @@ import '@progress/kendo-angular-intl/locales/pt/currencies';
 import '@progress/kendo-angular-intl/locales/pt/numbers';
 
 import localePt from '@angular/common/locales/pt';
+import { DataTableModule } from '@shared/components/datatable/datatable.module';
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
@@ -33,6 +38,9 @@ registerLocaleData(localePt, 'pt');
     NgxLoadingModule,
     NgbModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    DataTableModule
   ],
   exports: [
     PedidosComponent

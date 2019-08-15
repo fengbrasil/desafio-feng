@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientDTO } from '@shared/models/client.model';
-import { ColumnSettings } from '@shared/components/datatable/interfaces/columnSettings';
-import { SelectableSettings } from '@progress/kendo-angular-grid';
-import { PedidosService } from './shared/services/pedidos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +8,11 @@ import { PedidosService } from './shared/services/pedidos.service';
 })
 export class AppComponent implements OnInit {
 
+  constructor(private router: Router,
+  ) {  }
 
   ngOnInit() {
+  this.router.navigate(['pedidos']);
   }
 
 }

@@ -1,0 +1,20 @@
+<div class="col">
+  <kendo-grid [data]="data" [filter]="state.filter" filterable="menu" [pageable]="true" [pageSize]="state.take"
+    [skip]="state.skip" (pageChange)="paginarGrid($event)" (dataStateChange)="dataStateChange($event)">
+    <kendo-grid-column *ngFor="let grid of gridSchema; index as i" [field]="grid.field" [title]="grid.title"
+      [width]="grid.width" [filterable]="grid.filterable" [hidden]="grid.hidden">
+      <ng-template kendoGridFilterMenuTemplate let-filter let-column="column" let-filterService="filterService" >
+        <kendo-grid-string-filter-menu [column]="column" [filter]="filter" [filterService]="filterService"
+          [operator]="" [extra]="false">
+          <kendo-filter-contains-operator></kendo-filter-contains-operator>
+        </kendo-grid-string-filter-menu>
+      </ng-template>
+      <ng-template kendoGridCellTemplate let-dataItem *ngIf="grid.field === 'value'">
+          {{ dataItem.value | currency:'R$' }}
+        </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-messages noRecords="Não há dados a serem exibidos.">
+    </kendo-grid-messages>
+  </kendo-grid>
+</div>
