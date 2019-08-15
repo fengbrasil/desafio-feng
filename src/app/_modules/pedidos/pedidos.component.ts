@@ -1,16 +1,23 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { PedidosService } from '@shared/services/pedidos.service';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  TemplateRef
+} from '@angular/core';
+
 import {
   SelectableSettings,
   GridDataResult,
   DataStateChangeEvent,
   PageChangeEvent
 } from '@progress/kendo-angular-grid';
+
 import { process, State } from '@progress/kendo-data-query';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { PedidoDTO } from '@shared/models/pedido.model';
-import { Subject } from 'rxjs';
 import { ColumnSettings } from '@shared/components/datatable/interfaces/columnSettings';
+import { PedidosService } from '@shared/services/pedidos.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -24,9 +31,11 @@ export class PedidosComponent implements OnInit {
   loading = false;
   selectableSettings: SelectableSettings;
 
+  // Necessário para a paginação do front side. Guarda a data não modificada.
   gridDataRes: any;
-  gridData: GridDataResult;
 
+  // Conteúdo da grid.
+  gridData: GridDataResult;
   gridSchema: ColumnSettings[] = [
     {
       field: 'name',
@@ -53,9 +62,10 @@ export class PedidosComponent implements OnInit {
       type: 'numeric'
     },
   ];
-
   mySelection: number[] = [];
   selectedRow: PedidoDTO;
+
+  // Responsável pela paginação da grid
   state: State = {
     skip: 0,
     take: 10,
@@ -84,6 +94,8 @@ export class PedidosComponent implements OnInit {
     this.loading = true;
     this.pedidosService.getAll().subscribe(
       res => {
+        /* Foi necessário fazer essa transformação do Date
+         para que o filtro de data pudesse funcionar. */
         res.map(pedido => {
           pedido.date = new Date(pedido.date);
         });
@@ -99,12 +111,13 @@ export class PedidosComponent implements OnInit {
   }
 
   cellClick(row) {
-    console.log(row.dataItem);
+    // Pega os dados da linha selecionada
     this.selectedRow = row.dataItem;
 
     this.modal.open(this.modalDetalharPedido, { size: 'lg', centered: true });
   }
 
+  // Controla a exibição dos dados na grid de acordo com o que foi modificado.
   dataStateChange(state: DataStateChangeEvent): void {
     this.state = state;
     this.gridData = process(this.gridDataRes, this.state);

@@ -1,13 +1,10 @@
 # Desafio FENG
 
-Criar uma aplicação web para visualizar os pedidos realizados durante um festival. Para cada pedido, o sistema deverá exibir os itens selecionados e os dados do comprador.
+** Para mockar o backend eu utilizei o json-server, é necessario rodar um json-server --watch pedidos.json para popular a grid.
 
-* Aplicantes para a vaga de full-stack deverão modelar o banco de dados e desenvolver a API.
-* Caso você aplique para a vaga de front-end, utilize os arquivos .json no repositório
-* **É necessário adicionar seu CV atualizado e com dados para contato**
-
-
-Crie um fork do repositório e, ao concluir o desafio, faça um pull-request.
+* Optei por utilizar a librarie do KendoUI Grid, por ser robusta e entregar o necessário de forma ágil e dinâmica.
+* Os filtros eu escolhi deixar fazer parte da grid, pois pareceu mais amigavél a visualização.
+* Utilizei o bootstrap 4 e alguns inputs do Material também.
 
 *Mesmo que você não consiga concluir o desafio, não deixe de criar o pull-request.*
 

@@ -1,11 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GridDataResult, DataStateChangeEvent, PageChangeEvent } from '@progress/kendo-angular-grid';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
+
+import {
+  GridDataResult,
+  DataStateChangeEvent,
+  PageChangeEvent
+} from '@progress/kendo-angular-grid';
+
 import { process, State } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-datatable',
-  templateUrl: './datatable.component.html',
-  styleUrls: ['./datatable.component.css']
+  templateUrl: './datatable.component.html'
 })
 export class DataTableComponent implements OnInit {
   @Input() data: GridDataResult;
@@ -17,7 +26,6 @@ export class DataTableComponent implements OnInit {
   // Mostrar filtros ou não.
   @Input() showFilter: boolean;
 
-
   state: State = {
     skip: 0,
     take: 10,
@@ -25,9 +33,7 @@ export class DataTableComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.data);
-  }
+  ngOnInit() { }
 
   dataStateChange(state: DataStateChangeEvent): void {
     this.state = state;
