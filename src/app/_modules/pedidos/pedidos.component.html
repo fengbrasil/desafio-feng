@@ -1,0 +1,107 @@
+<div class="container pt-5">
+    <mat-card class="mat-elevation-z8">
+        <mat-card-header class="text-center">
+            <mat-card-title>Desafio Feng</mat-card-title>
+            <mat-card-subtitle>Raphael Pinheiro</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="col">
+                <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+                </ngx-loading>
+
+                <kendo-grid [data]="gridData" [filter]="state.filter" filterable="menu" [pageable]="true"
+                    [pageSize]="state.take" [skip]="state.skip" (pageChange)="paginarGrid($event)"
+                    [selectable]="selectableSettings" (cellClick)="cellClick($event)" [kendoGridSelectBy]="'id'"
+                    [selectedKeys]="mySelection" (dataStateChange)="dataStateChange($event)">
+
+                    <kendo-grid-column field="id" title="Identificação" [filterable]="false">
+                    </kendo-grid-column>
+
+                    <kendo-grid-column field="date" title="Data do Pedido" filter="date" format="{0:d}">
+                        <ng-template kendoGridFilterMenuTemplate let-filter let-column="column"
+                            let-filterService="filterService">
+                            <kendo-grid-date-filter-menu [column]="column" [filter]="filter" operator="eq"
+                                [filterService]="filterService">
+                                <kendo-filter-eq-operator></kendo-filter-eq-operator>
+                                <kendo-filter-after-operator></kendo-filter-after-operator>
+                                <kendo-filter-before-operator></kendo-filter-before-operator>
+                            </kendo-grid-date-filter-menu>
+                        </ng-template>
+                    </kendo-grid-column>
+
+                    <kendo-grid-column field="value" title="Valor" filter="numeric" format="{0:c}">
+                        <ng-template kendoGridFilterMenuTemplate let-filter let-column="column"
+                            let-filterService="filterService">
+                            <kendo-grid-numeric-filter-menu [column]="column" [filter]="filter" operator="lte"
+                                [filterService]="filterService" [extra]="false">
+                                <kendo-filter-lte-operator></kendo-filter-lte-operator>
+                            </kendo-grid-numeric-filter-menu>
+                        </ng-template>
+
+                        <ng-template kendoGridCellTemplate let-dataItem>
+                            {{ dataItem.value | currency:'R$' }}
+                        </ng-template>
+                    </kendo-grid-column>
+                    <kendo-grid-column field="client.name" title="Cliente">
+                        <ng-template kendoGridFilterMenuTemplate let-filter let-column="column"
+                            let-filterService="filterService">
+                            <kendo-grid-string-filter-menu [column]="column" [filter]="filter"
+                                [filterService]="filterService" [operator]="" [extra]="false">
+                                <kendo-filter-contains-operator></kendo-filter-contains-operator>
+                            </kendo-grid-string-filter-menu>
+                        </ng-template>
+                    </kendo-grid-column>
+
+                    <kendo-grid-messages noRecords="Não há dados a serem exibidos.">
+                    </kendo-grid-messages>
+                </kendo-grid>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<ng-template #modalDetalharPedido let-close="close">
+    <div class="modal-header">
+        <h6 class="modal-title">Detalhes do Pedido #{{ selectedRow?.id }}</h6>
+        <button type="button" class="close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Nome" [value]="selectedRow.client.name" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Telefone" [value]="selectedRow.client.phone" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="E-mail" [value]="selectedRow.client.email" readonly />
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col p-0">
+                <app-datatable [data]="selectedRow.items" [dataRes]="gridDataRes.items" [gridSchema]="gridSchema"
+                    [showFilter]="false">
+                </app-datatable>
+            </div>
+        </div>
+    </div>
+</ng-template>
