@@ -1,5 +1,3 @@
-import { ClientDTO } from './client.model';
-
 export class PedidoDTO {
     id: number;
     value: string;
@@ -10,5 +8,4 @@ export class PedidoDTO {
         quantity: number;
         value: number;
     }];
-    client: ClientDTO;
 }

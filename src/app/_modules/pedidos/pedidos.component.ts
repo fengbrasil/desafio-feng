@@ -99,7 +99,7 @@ export class PedidosComponent implements OnInit {
         res.map(pedido => {
           pedido.date = new Date(pedido.date);
         });
-        this.gridData = res;
+        this.gridData = process(res, this.state);
         this.gridDataRes = res;
         this.loading = false;
       },

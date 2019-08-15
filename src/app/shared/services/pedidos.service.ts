@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PedidoDTO } from '../models/pedido.model';
 
 @Injectable()
 export class PedidosService {
@@ -9,7 +10,7 @@ export class PedidosService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(`${this.url}/pedidos`);
+  getAll(): Observable<PedidoDTO[]> {
+    return this.http.get<PedidoDTO[]>(`${this.url}/pedidos`);
   }
 }
