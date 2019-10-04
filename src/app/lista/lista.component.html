@@ -1,0 +1,21 @@
+<div class="col s12">
+    <table>
+            <thead>
+                <tr>
+                    <th>Identificação</th>
+                    <th>Data do Pedido</th>
+                    <th>Valor</th>
+                    <th>Cliente</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="pedidos" >
+                <tr *ngFor="let pedido of pedidos">
+                    <td>{{ pedido.id }}</td>
+                    <td>{{ pedido.date | date:"MM/dd/yy"}}</td>
+                    <td>{{ pedido.value | currency:'BRL':'symbol':'0.0-2'}}</td>
+                    <td>{{ pedido.client.name }}</td>
+                </tr>
+            </tbody>
+        </table> 
+</div>
+

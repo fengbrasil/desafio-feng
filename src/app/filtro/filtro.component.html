@@ -1,0 +1,29 @@
+<div class="col s12">
+    <div class="row">
+        <div class="input-field col s3">
+            <input type="date" name="inicio">
+            <label for="inicio">Data de Início</label>
+        </div>
+        <div class="input-field col s3">
+            <input type="date" name="termino">
+            <label for="termino">Data de Término</label>
+        </div>
+        <div class="input-field col s3">
+            <input 
+            type="text" 
+            name="nome" 
+            (keyup)="buscarNome(pesquisaNome.value)" 
+            #pesquisaNome>
+            <label for="nome">Nome do Cliente</label>
+        </div>
+        <div class="input-field col s3">
+            <input 
+            type="number" 
+            name="valor"
+            (change)="buscarValorMin(pesquisaValMin.value)"
+            #pesquisaValMin
+            >
+            <label for="valor">Valor mínimo</label>
+        </div>
+    </div>
+</div>
