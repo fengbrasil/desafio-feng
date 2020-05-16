@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title text-center">Detalhes do Pedido {function="formatRequestId($request[0].idrequest)"}</h4>
+</div>
+<div class="modal-body">
+
+    <table class="table">
+        <tr>
+            <td><b>Nome:</b> {$request[0].desclient}</td>
+            <td><b>Telefone:</b> {$request[0].cliphone}</td>
+            <td><b>E-mail:</b> {$request[0].climail} </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-responsive">
+
+        <thead>
+        <tr>
+            <th class="text-center">Item</th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Valor Unitário</th>
+            <th class="text-center">Quantidade</th>
+            <th class="text-center">Subtotal</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop="$request"}
+        <tr>
+            <td class="text-center">{$value.product}</td>
+            <td class="text-center">{$value.desproduct}</td>
+            <td class="text-center">R$ {function="formatPrice($value.vlprice)"}</td>
+            <td class="text-center">{$value.nrqtd}</td>
+            <td class="text-center">R$ {function="formatPrice($value.vlprice * $value.nrqtd)"}</td>
+        </tr>
+        {/loop}
+        </tbody>
+        
+    
+    </table>
+</div> 
+<div class="modal-footer text-right">
+    <h4>Total: R$ {function="getRqtTotal($request[0].idrequest)"}</h4>
+</div>
+

@@ -1,0 +1,63 @@
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Produtos
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Produtos</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        
+        <div class="box-header with-border">
+          <a href="/produtos/novo" class="btn btn-default" >Novo</a>
+        </div>
+
+        <div class="box-body">
+            <table class="globalDtTable table table-bordered table-responsive">
+                <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Item</th>
+                  <th class="text-center">Descrição</th>
+                  <th class="text-center">Valor</th>
+                  <th class="text-center">Data de Registro</th>
+                  <th class="text-center">Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {loop="$products"}
+                <tr>
+                  <td class="text-center">{$value.idproduct}</td>
+                  <td class="text-center">{$value.product}</td>
+                  <td class="text-center">{$value.desproduct}</td>
+                  <td class="text-center">R$ {function="formatPrice($value.vlprice)"}</td>
+                  <td class="text-center">{function="formatTimeStamp($value.dt_register)"}</td>
+                  <td class="text-center"><div class="btn-group">
+                      <a href="/produtos/{$value.idproduct}" class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Alterar"><i class="fa fa-pencil"></i></a>
+                      <a href="javascript:void(0);" onclick="deleteProduct('{$value.idproduct}')" class="btn btn-xs btn-danger" type="button" data-toggle="tooltip" title="" data-original-title="Excluir"><i class="fa fa-times"></i></a>
+                      </div>
+                </td>
+                </tr>
+                {/loop}
+                
+                </tbody>
+                
+              </table>
+        </div>
+       
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

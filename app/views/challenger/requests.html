@@ -1,0 +1,108 @@
+ <!-- Content Wrapper. Contains page content -->
+ <div  class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Pedidos <a href="#" class="btn btn-default modalDefault" data-link="request/new" data-id="">Novo</a>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Pedidos</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box" id="appFilter">
+        
+        <div class="box-header with-border">
+          <div class="row">
+           
+            <div class="col-xs-3">
+                <div class="form-group">
+                  <label>Data de Início</label>
+      
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input @change="filterDate()" v-model="dateStart" id="dtStart" type="date" class="form-control pull-right">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="form-group">
+                  <label>Data de Término</label>
+      
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input @change="filterDate()" v-model="dateEnd" id="dtEnd" type="date" class="form-control pull-right">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="form-group">
+                  <label>Nome do cliente</label>
+                  <input v-on:keyup="filterName()"  v-model="clientName" id="clientName" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="form-group">
+                  <label>Valor Mínimo</label>
+                  <input v-on:keyup="filterMinValue()" v-model="minValue" type="number" step="0.01"  class="form-control">
+                </div>
+            </div>
+          </div>
+          
+         
+           
+        </div>
+
+        <div class="box-body">
+            <table class="table table-bordered table-responsive table-hover">
+                <thead>
+                <tr>
+                  <th class="text-center">Identificação</th>
+                  <th class="text-center">Data do Pedido</th>
+                  <th class="text-center">Valor</th>
+                  <th class="text-center">Cliente</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr v-for="item in requestList">
+                  <td class="text-center" @click="showModal(item.idrequest)"><a href="#">{{item.idrequest | formatId}}</a></td>
+                  <td class="text-center">{{item.dt_request | formatDate}}</td>
+                  <td class="text-center">R$ {{item.vltotal}}</td>
+                  <td class="text-center">{{item.desclient}}</td>
+                </tr>
+
+                <!-- VERSÃO EM PHP
+                {loop="$requests"}
+                <tr class="requestList">
+                  <td class="text-center"><a href="#" class="modalDefault" data-link="request/{$value.idrequest}" data-id="">{function="formatRequestId($value.idrequest)"}</a></td>
+                  <td class="text-center">{function="formatTimeStamp($value.dt_request)"}</td>
+                  <td class="text-center">R$ {function="getRqtTotal($value.idrequest)"}</td>
+                  <td class="text-center">{$value.desclient}</td>
+                </tr>
+                {/loop}
+                -->
+                
+                </tbody>
+                
+              </table>
+        </div>
+       
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
